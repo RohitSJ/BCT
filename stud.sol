@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity >= 0.7.0;
 
 contract Student_management{
@@ -25,9 +25,25 @@ contract Student_management{
 		}
         return("Name Not Found", "Department Not Found");
 	}
+	function getAllStudents() public view returns (int[] memory, string[] memory, string[] memory) {
+        int[] memory ids = new int[](Students.length);
+        string[] memory names = new string[](Students.length);
+        string[] memory departments = new string[](Students.length);
 
-	//Fallback Function
+        for (uint i = 0; i < Students.length; i++) {
+            ids[i] = Students[i].stud_id;
+            names[i] = Students[i].Name;
+            departments[i] = Students[i].Department;
+        }
+
+        return (ids, names, departments);
+    }
+
+	// Fallback Function
 	fallback() external payable{
 		Students.push(Student(7, "XYZ", "Mechanical"));
 	}
+
+	// Receive Function
+	receive() external payable {}
 }

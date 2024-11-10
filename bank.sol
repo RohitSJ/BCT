@@ -1,5 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity >= 0.7.0;
-
 contract Bank{
     mapping(address => uint) public user_account;
     mapping(address => bool) public user_exist;
